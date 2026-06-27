@@ -132,6 +132,32 @@
   footer{padding:40px 0 60px;color:var(--faint);font-size:13px;text-align:center}
   .note{font-size:12.5px;color:var(--faint);margin-top:18px}
 
+  /* apply form */
+  .formwrap{margin-top:34px;background:var(--bg-card);border:1px solid var(--line-2);
+    border-radius:22px;padding:34px 32px;box-shadow:0 10px 40px rgba(27,42,107,.06)}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+  .field{display:flex;flex-direction:column;gap:7px}
+  .field.full{grid-column:1/-1}
+  .field label{font-size:13.5px;font-weight:700;color:var(--ink-2)}
+  .field label .req{color:var(--blue);margin-left:2px}
+  .field input,.field select,.field textarea{font-family:var(--font);font-size:14.5px;color:var(--ink);
+    background:var(--bg-alt);border:1px solid var(--line-2);border-radius:11px;padding:12px 14px;
+    transition:border-color .15s,box-shadow .15s;width:100%}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);
+    background:#fff;box-shadow:0 0 0 3px var(--blue-tint)}
+  .field textarea{resize:vertical;min-height:96px}
+  .checks{display:flex;flex-wrap:wrap;gap:10px;margin-top:2px}
+  .chk{display:inline-flex;align-items:center;gap:7px;background:var(--bg-alt);border:1px solid var(--line-2);
+    border-radius:999px;padding:8px 14px;font-size:13.5px;color:var(--ink-2);cursor:pointer;user-select:none}
+  .chk input{width:auto;accent-color:var(--blue)}
+  .consent{display:flex;align-items:flex-start;gap:9px;margin:6px 0 20px;font-size:13px;color:var(--sub)}
+  .consent input{width:auto;margin-top:3px;accent-color:var(--blue)}
+  .submit{width:100%;background:var(--blue);color:#fff;font-family:var(--font);font-weight:800;
+    font-size:16px;border:0;border-radius:999px;padding:16px;cursor:pointer;
+    transition:background .18s,box-shadow .18s,transform .12s}
+  .submit:hover{background:var(--blue-deep);box-shadow:0 8px 22px rgba(51,102,255,.34);transform:translateY(-1px)}
+  .fhint{font-size:12.5px;color:var(--faint);text-align:center;margin-top:14px}
+
   @media(max-width:760px){
     .grid-3,.grid-2,.plist{grid-template-columns:1fr}
     .week{grid-template-columns:1fr;gap:8px}
@@ -139,6 +165,8 @@
     .wtag .wt{font-size:22px;margin-top:0}
     .trow{grid-template-columns:110px 1fr}
     header{padding:54px 0 44px}
+    .frow{grid-template-columns:1fr}
+    .formwrap{padding:26px 20px}
   }
 </style>
 </head>
@@ -340,17 +368,106 @@
   </div>
 </section>
 
-<!-- FINAL CTA -->
+<!-- FINAL CTA + APPLY FORM -->
 <section id="apply" style="border-top:0">
   <div class="wrap">
     <div class="final">
       <h2>AX 전환 PM, 1기에 합류하세요</h2>
       <p>소수정예 10명. AI 전환의 흐름을 제안 단계부터 끌고 가는 PM으로.</p>
-      <a href="#" class="btn btn-pri" id="applyBtn">참가 신청하기 →</a>
+      <a href="#applyform" class="btn btn-pri">신청서 작성하기 →</a>
     </div>
-    <p class="note" style="text-align:center">신청 후 간단한 인터뷰를 거쳐 최종 선발됩니다. 문의는 신청 페이지를 통해 받습니다.</p>
+
+    <div id="applyform" class="formwrap">
+      <span class="eyebrow">참가 신청</span>
+      <h2 style="margin:10px 0 4px">1기 참가 신청서</h2>
+      <p class="sec-sub" style="margin-bottom:24px">아래 정보를 남겨주시면, 검토 후 간단한 인터뷰를 거쳐 최종 선발(10명 내외)됩니다.</p>
+
+      <form action="https://formsubmit.co/ninestone.lee@gmail.com" method="POST">
+        <!-- Formsubmit 설정 -->
+        <input type="hidden" name="_subject" value="[AX전환PM 4주과정] 새 참가신청">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://ninestonelee.github.io/link21-ax-pm-course/?submitted=true#applyform">
+        <!-- 스팸봇 honeypot (사람에게는 안 보임) -->
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+        <div class="frow">
+          <div class="field">
+            <label for="f-name">이름<span class="req">*</span></label>
+            <input id="f-name" type="text" name="이름" required placeholder="홍길동">
+          </div>
+          <div class="field">
+            <label for="f-phone">휴대폰<span class="req">*</span></label>
+            <input id="f-phone" type="tel" name="휴대폰" required placeholder="010-0000-0000">
+          </div>
+        </div>
+
+        <div class="frow">
+          <div class="field">
+            <label for="f-email">이메일<span class="req">*</span></label>
+            <input id="f-email" type="email" name="이메일" required placeholder="name@example.com">
+          </div>
+          <div class="field">
+            <label for="f-org">소속 / 직무</label>
+            <input id="f-org" type="text" name="소속_직무" placeholder="(주)○○ · 서비스 기획">
+          </div>
+        </div>
+
+        <div class="field full" style="margin-bottom:16px">
+          <label for="f-career">기획 / PM 경력<span class="req">*</span></label>
+          <select id="f-career" name="기획_PM_경력" required>
+            <option value="" disabled selected>선택해 주세요</option>
+            <option>3년 미만</option>
+            <option>3~5년</option>
+            <option>5~10년</option>
+            <option>10년 이상</option>
+          </select>
+        </div>
+
+        <div class="field full" style="margin-bottom:16px">
+          <label>관련 경험 (해당 항목 모두 선택)</label>
+          <div class="checks">
+            <label class="chk"><input type="checkbox" name="관련경험" value="제안서 작성">제안서 작성</label>
+            <label class="chk"><input type="checkbox" name="관련경험" value="공공 정보화 사업">공공 정보화 사업</label>
+            <label class="chk"><input type="checkbox" name="관련경험" value="AI 도구 활용">AI 도구 활용</label>
+            <label class="chk"><input type="checkbox" name="관련경험" value="컨설팅·SI">컨설팅·SI</label>
+          </div>
+        </div>
+
+        <div class="field full" style="margin-bottom:18px">
+          <label for="f-motive">지원 동기 & AX 관심 영역<span class="req">*</span></label>
+          <textarea id="f-motive" name="지원동기_관심영역" required placeholder="현재 하시는 일, 이 과정을 통해 전환하고 싶은 방향, 관심 있는 AX 영역을 자유롭게 적어주세요."></textarea>
+        </div>
+
+        <label class="consent">
+          <input type="checkbox" required>
+          <span>개인정보(이름·연락처·이메일)를 참가 선발 및 안내 목적으로 수집·이용하는 데 동의합니다. <span class="req">*</span></span>
+        </label>
+
+        <button type="submit" class="submit">신청서 제출하기</button>
+        <p class="fhint">제출 후 영업일 기준 수일 내 인터뷰 안내를 드립니다.</p>
+      </form>
+    </div>
+
+    <p class="note" style="text-align:center">정원 10명 내외 · 선발제로 운영됩니다.</p>
   </div>
 </section>
+
+<script>
+  // 제출 완료 후 복귀 시 완료 메시지 표시
+  if (new URLSearchParams(location.search).get('submitted') === 'true') {
+    var fw = document.getElementById('applyform');
+    if (fw) {
+      fw.innerHTML =
+        '<div style="text-align:center;padding:36px 10px">' +
+        '<div style="font-size:46px;line-height:1">✅</div>' +
+        '<h2 style="margin:14px 0 6px">신청이 접수되었습니다</h2>' +
+        '<p class="sec-sub" style="margin:0 auto">검토 후 인터뷰 안내를 드리겠습니다. 감사합니다.</p>' +
+        '</div>';
+      fw.scrollIntoView({behavior:'smooth'});
+    }
+  }
+</script>
 
 <footer>
   <div class="wrap">
