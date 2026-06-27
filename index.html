@@ -157,6 +157,11 @@
     transition:background .18s,box-shadow .18s,transform .12s}
   .submit:hover{background:var(--blue-deep);box-shadow:0 8px 22px rgba(51,102,255,.34);transform:translateY(-1px)}
   .fhint{font-size:12.5px;color:var(--faint);text-align:center;margin-top:14px}
+  .tip{background:var(--blue-tint);border:1px solid var(--blue-tint-2);border-radius:10px;
+    padding:11px 14px;font-size:13px;color:var(--blue-ink);margin:2px 0 9px;line-height:1.55}
+  .tip b{color:var(--blue-deep)}
+  .counter{font-size:12px;color:var(--faint);text-align:right;margin-top:5px}
+  .counter.warn{color:var(--blue);font-weight:700}
 
   /* hero 2-col + image */
   .hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:44px;align-items:center}
@@ -449,7 +454,7 @@
       <p class="sec-sub" style="margin-bottom:24px">아래 지원서를 남겨주시면, 검토 후 지원해 주신 분들을 <b>비공개 설명회(웨비나)</b>에 초대드립니다.
         선발되신 분께는 등록(결제)·환급 안내를 드립니다. <b>지금은 결제 없이 지원서만 작성</b>하시면 됩니다.</p>
 
-      <form action="https://formsubmit.co/ninestone.lee@gmail.com" method="POST">
+      <form action="https://formsubmit.co/ninestone.lee@gmail.com" method="POST" enctype="multipart/form-data">
         <!-- Formsubmit 설정 -->
         <input type="hidden" name="_subject" value="[AX전환PM 1기] 새 지원서 접수">
         <input type="hidden" name="_template" value="table">
@@ -501,9 +506,17 @@
           </div>
         </div>
 
+        <div class="field full" style="margin-bottom:16px">
+          <label for="f-motive">지원 동기 &amp; AX 관심 영역<span class="req">*</span></label>
+          <div class="tip">💡 <b>최대한 상세하게 작성해 주실수록 선정 가능성이 높아집니다.</b><br>현재 하시는 일·주요 성과, 이 과정을 통해 전환하고 싶은 방향, 관심 있는 AX 영역을 구체적으로 적어주세요.</div>
+          <textarea id="f-motive" name="지원동기_관심영역" required maxlength="2000" placeholder="예) 현재 ○○ 서비스 기획 5년차입니다. 최근 사내 AI 도입 과제를 맡으면서 AX 전환 PM으로 방향을 잡고자…"></textarea>
+          <div class="counter"><span id="cnt">0</span> / 2,000자</div>
+        </div>
+
         <div class="field full" style="margin-bottom:18px">
-          <label for="f-motive">지원 동기 & AX 관심 영역<span class="req">*</span></label>
-          <textarea id="f-motive" name="지원동기_관심영역" required placeholder="현재 하시는 일, 이 과정을 통해 전환하고 싶은 방향, 관심 있는 AX 영역을 자유롭게 적어주세요."></textarea>
+          <label for="f-file">이력서 · 포트폴리오 첨부 <span style="color:var(--faint);font-weight:600">(선택)</span></label>
+          <input id="f-file" type="file" name="attachment" accept=".pdf,.doc,.docx,.ppt,.pptx,.hwp,.hwpx">
+          <div class="counter">PDF 권장 · 1개 · 최대 약 10MB · 제출하시면 선정 검토에 도움이 됩니다</div>
         </div>
 
         <label class="consent">
@@ -534,6 +547,16 @@
       fw.scrollIntoView({behavior:'smooth'});
     }
   }
+  // 지원동기 실시간 글자수 카운터
+  (function(){
+    var mt = document.getElementById('f-motive'), cn = document.getElementById('cnt');
+    if (!mt || !cn) return;
+    var upd = function(){
+      cn.textContent = mt.value.length.toLocaleString();
+      cn.parentElement.classList.toggle('warn', mt.value.length >= 1800);
+    };
+    mt.addEventListener('input', upd); upd();
+  })();
 </script>
 
 <footer>
