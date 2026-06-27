@@ -158,6 +158,37 @@
   .submit:hover{background:var(--blue-deep);box-shadow:0 8px 22px rgba(51,102,255,.34);transform:translateY(-1px)}
   .fhint{font-size:12.5px;color:var(--faint);text-align:center;margin-top:14px}
 
+  /* hero 2-col + image */
+  .hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:44px;align-items:center}
+  .hero-copy{min-width:0}
+  .hero-img{position:relative}
+  .hero-img img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:20px;
+    box-shadow:0 24px 60px rgba(27,42,107,.18);border:1px solid var(--line)}
+  .hero-badge{position:absolute;left:14px;bottom:14px;background:rgba(255,255,255,.93);
+    backdrop-filter:blur(6px);border-radius:12px;padding:9px 14px;font-size:12.5px;font-weight:700;
+    color:var(--blue-ink);box-shadow:0 6px 18px rgba(0,0,0,.10)}
+
+  /* process timeline */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
+  .step{position:relative;background:var(--bg-card);border:1px solid var(--line-2);border-radius:14px;padding:22px 18px}
+  .step .sn{width:30px;height:30px;border-radius:9px;background:var(--blue);color:#fff;font-weight:800;
+    font-size:14px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+  .step h3{font-size:15.5px;font-weight:800;margin-bottom:5px;letter-spacing:-.02em}
+  .step p{font-size:13px;color:var(--sub)}
+  .step .when{font-size:12px;font-weight:700;color:var(--blue);margin-top:9px;display:block}
+
+  /* perks */
+  .perks{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+  .perk{background:linear-gradient(180deg,var(--blue-tint) 0%,#fff 100%);
+    border:1px solid var(--blue-tint-2);border-radius:14px;padding:20px}
+  .perk .ic{font-size:22px;line-height:1}
+  .perk h3{font-size:15px;font-weight:800;margin:9px 0 4px;letter-spacing:-.02em}
+  .perk p{font-size:13px;color:var(--ink-2)}
+  .perk .big{font-size:26px;font-weight:800;color:var(--blue-ink);letter-spacing:-.03em}
+  .pillbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .pillbar .p{font-size:12.5px;font-weight:600;color:var(--ink-2);background:#fff;
+    border:1px solid var(--line-2);border-radius:999px;padding:6px 13px}
+
   @media(max-width:760px){
     .grid-3,.grid-2,.plist{grid-template-columns:1fr}
     .week{grid-template-columns:1fr;gap:8px}
@@ -167,6 +198,10 @@
     header{padding:54px 0 44px}
     .frow{grid-template-columns:1fr}
     .formwrap{padding:26px 20px}
+    .hero-grid{grid-template-columns:1fr;gap:24px}
+    .hero-img{order:-1}
+    .steps{grid-template-columns:1fr 1fr}
+    .perks{grid-template-columns:1fr}
   }
 </style>
 </head>
@@ -180,21 +215,26 @@
 </nav>
 
 <header>
-  <div class="wrap">
-    <span class="eyebrow">4주 · 오프라인 소수정예</span>
-    <h1>AI 전환 시대,<br><span class="grad">AX를 설계하는 PM</span>으로</h1>
-    <p class="lede">이미 기획·PM 역량을 갖춘 당신이, 4주 만에 AI 전환(AX)의 진단·기획부터
-      공공·기업 제안 실무까지 — 즉시 현장에 투입 가능한 <b>AX 전환 PM</b>으로 전환합니다.</p>
-    <div class="chips">
-      <span class="chip"><i class="dot"></i>총 12시간 (3h × 4회)</span>
-      <span class="chip"><i class="dot"></i>주 1회 × 4주</span>
-      <span class="chip"><i class="dot"></i>오프라인 · 서울</span>
-      <span class="chip"><i class="dot"></i>정원 10명 내외</span>
-      <span class="chip"><i class="dot"></i>수료 후 실무 매칭</span>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">1기 시범 모집 · 선발제</span>
+      <h1>AI 전환 시대,<br><span class="grad">AX를 설계하는 PM</span>으로</h1>
+      <p class="lede">이미 기획·PM 역량을 갖춘 당신이, 4주 만에 AI 전환(AX)의 진단·기획부터
+        공공·기업 제안 실무까지 — 즉시 현장에 투입 가능한 <b>AX 전환 PM</b>으로 전환합니다.</p>
+      <div class="chips">
+        <span class="chip"><i class="dot"></i>1기 시범 · 수강 부담 최소화</span>
+        <span class="chip"><i class="dot"></i>고용보험 환급 시 최대 90%</span>
+        <span class="chip"><i class="dot"></i>오프라인 서울 · 4주</span>
+        <span class="chip"><i class="dot"></i>선발 10명 내외</span>
+      </div>
+      <div class="cta-row">
+        <a href="#apply" class="btn btn-pri">1기 지원하기 →</a>
+        <a href="#curriculum" class="btn btn-ghost">커리큘럼 보기</a>
+      </div>
     </div>
-    <div class="cta-row">
-      <a href="#apply" class="btn btn-pri">참가 신청하기 →</a>
-      <a href="#curriculum" class="btn btn-ghost">커리큘럼 보기</a>
+    <div class="hero-img">
+      <img src="assets/hero_A2_office.png" alt="AX 전환 PM 과정 — 모던 오피스에서 일하는 IT 기획자·PM" loading="eager">
+      <span class="hero-badge">AX 전환 PM · 1기 모집</span>
     </div>
   </div>
 </header>
@@ -248,7 +288,7 @@
         </ul>
       </div>
     </div>
-    <p class="note">선발 방식: 신청서(경력·동기·관심 영역) → 간단 인터뷰 → 10명 내외 확정.</p>
+    <p class="note">선발 방식: 지원서(경력·동기·관심 영역) → 비공개 설명회(웨비나) → 10명 내외 선발.</p>
   </div>
 </section>
 
@@ -352,18 +392,44 @@
   </div>
 </section>
 
-<!-- ENROLL -->
+<!-- HOW TO APPLY -->
 <section id="enroll">
   <div class="wrap">
-    <span class="eyebrow">수강 안내</span>
-    <h2>모집 요강</h2>
+    <span class="eyebrow">지원 안내</span>
+    <h2>지원하고 → 설명회에서 만나고 → 1기를 함께 시작합니다</h2>
+    <p class="sec-sub">이번 1기는 시범 기수로 소수정예 운영합니다. 지원서를 검토한 뒤 지원해 주신 분들을
+      <b>비공개 설명회(웨비나)</b>에 초대드려, 과정과 서로의 방향을 확인한 후 함께할 분을 모십니다.
+      자리가 한정된 만큼 선발 과정이 있는 점 양해 부탁드립니다.</p>
+
+    <div class="steps">
+      <div class="step"><div class="sn">1</div><h3>지원서 접수</h3><p>상세 지원서를 작성해 주세요.</p><span class="when">모집 약 1주일</span></div>
+      <div class="step"><div class="sn">2</div><h3>비공개 설명회</h3><p>지원자 대상 웨비나 — 과정 상세 안내와 Q&amp;A.</p><span class="when">지원 마감 후</span></div>
+      <div class="step"><div class="sn">3</div><h3>1기 선발</h3><p>지원서·설명회를 종합해 함께할 분을 모십니다.</p><span class="when">설명회 직후</span></div>
+      <div class="step"><div class="sn">4</div><h3>등록 · 수강</h3><p>선정자께 등록(결제)·환급을 안내드립니다.</p><span class="when">7월 말 개강</span></div>
+    </div>
+
+    <h3 style="font-size:18px;margin:48px 0 0;letter-spacing:-.02em">1기 시범 기수 혜택</h3>
+    <div class="perks">
+      <div class="perk"><div class="ic">🎯</div>
+        <h3>초기 핵심 프로젝트 우선 참여</h3>
+        <p>1기는 시범 기수로서, 초기에 진행되는 중요한 실무 프로젝트에 우선 참여할 기회를 드립니다.</p></div>
+      <div class="perk"><div class="ic">💸</div>
+        <h3>수강 부담 최소화</h3>
+        <p>시범 운영으로 1기 수강 부담을 낮췄습니다. 고용보험 가입 재직자는 환급 적용 시 <span class="big">최대 90%</span> 환급도 가능합니다.</p></div>
+      <div class="perk"><div class="ic">🤝</div>
+        <h3>소수정예 밀착</h3>
+        <p>10명 내외만 선발해, 1:5 이하 밀착 코칭으로 끝까지 함께합니다.</p></div>
+    </div>
+    <p class="note">※ 환급 가능 여부·금액은 고용보험 가입 형태와 과정 요건에 따라 다르며, 선정 후 개별 안내드립니다.</p>
+
+    <h3 style="font-size:18px;margin:44px 0 0;letter-spacing:-.02em">모집 요강</h3>
     <div class="tbl">
-      <div class="trow"><div class="k">수강료</div><div class="v"><span class="price">99만원 <small>/ 12시간 · 전 과정</small></span></div></div>
-      <div class="trow"><div class="k">편성</div><div class="v">3시간 × 4회 = 총 12시간 · 주 1회 × 4주</div></div>
-      <div class="trow"><div class="k">방식</div><div class="v">오프라인 (서울 집합) · 소수정예 밀착 코칭</div></div>
-      <div class="trow"><div class="k">정원</div><div class="v">10명 내외 (선발제)</div></div>
-      <div class="trow"><div class="k">개강</div><div class="v">2026년 7월 말</div></div>
-      <div class="trow"><div class="k">포함</div><div class="v">강의·실습·코칭 · 실전 제안 사례 교보재 · 수료 포트폴리오 · 실무 우선 매칭</div></div>
+      <div class="trow"><div class="k">대상</div><div class="v">경력 기획자·PM (실무 3년+ 권장) 중 AX 전환 희망자 · 선발제</div></div>
+      <div class="trow"><div class="k">편성</div><div class="v">3시간 × 4회 = 총 12시간 · 주 1회 × 4주 · 오프라인 (서울)</div></div>
+      <div class="trow"><div class="k">정원</div><div class="v">10명 내외 (지원서 + 설명회 후 선발)</div></div>
+      <div class="trow"><div class="k">일정</div><div class="v">지원 약 1주일 → 비공개 설명회 → 선발 → 7월 말 개강 <small>(상세 일정은 지원자께 안내)</small></div></div>
+      <div class="trow"><div class="k">수강료</div><div class="v"><span class="price">99만원 <small>/ 선발 후 등록 단계에서 환급·결제 안내</small></span></div></div>
+      <div class="trow"><div class="k">포함</div><div class="v">강의·실습·밀착코칭 · 실전 제안 사례 교보재 · 수료 포트폴리오 · 초기 프로젝트 우선 참여</div></div>
     </div>
   </div>
 </section>
@@ -372,19 +438,20 @@
 <section id="apply" style="border-top:0">
   <div class="wrap">
     <div class="final">
-      <h2>AX 전환 PM, 1기에 합류하세요</h2>
-      <p>소수정예 10명. AI 전환의 흐름을 제안 단계부터 끌고 가는 PM으로.</p>
-      <a href="#applyform" class="btn btn-pri">신청서 작성하기 →</a>
+      <h2>AX 전환 PM 1기, 지금 지원하세요</h2>
+      <p>지원 → 비공개 설명회 → 선발. 결제는 선정된 뒤 등록 단계에서 진행됩니다. 부담 없이 먼저 지원해 주세요.</p>
+      <a href="#applyform" class="btn btn-pri">지원서 작성하기 →</a>
     </div>
 
     <div id="applyform" class="formwrap">
-      <span class="eyebrow">참가 신청</span>
-      <h2 style="margin:10px 0 4px">1기 참가 신청서</h2>
-      <p class="sec-sub" style="margin-bottom:24px">아래 정보를 남겨주시면, 검토 후 간단한 인터뷰를 거쳐 최종 선발(10명 내외)됩니다.</p>
+      <span class="eyebrow">1기 지원</span>
+      <h2 style="margin:10px 0 4px">AX 전환 PM 1기 지원서</h2>
+      <p class="sec-sub" style="margin-bottom:24px">아래 지원서를 남겨주시면, 검토 후 지원해 주신 분들을 <b>비공개 설명회(웨비나)</b>에 초대드립니다.
+        선발되신 분께는 등록(결제)·환급 안내를 드립니다. <b>지금은 결제 없이 지원서만 작성</b>하시면 됩니다.</p>
 
       <form action="https://formsubmit.co/ninestone.lee@gmail.com" method="POST">
         <!-- Formsubmit 설정 -->
-        <input type="hidden" name="_subject" value="[AX전환PM 4주과정] 새 참가신청">
+        <input type="hidden" name="_subject" value="[AX전환PM 1기] 새 지원서 접수">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_next" value="https://ninestonelee.github.io/link21-ax-pm-course/?submitted=true#applyform">
@@ -444,8 +511,8 @@
           <span>개인정보(이름·연락처·이메일)를 참가 선발 및 안내 목적으로 수집·이용하는 데 동의합니다. <span class="req">*</span></span>
         </label>
 
-        <button type="submit" class="submit">신청서 제출하기</button>
-        <p class="fhint">제출 후 영업일 기준 수일 내 인터뷰 안내를 드립니다.</p>
+        <button type="submit" class="submit">지원서 제출하기 · 무료</button>
+        <p class="fhint">제출 후 비공개 설명회(웨비나) 안내를 드립니다. 수강료 결제는 선발 후 등록 단계에서 진행됩니다.</p>
       </form>
     </div>
 
@@ -461,8 +528,8 @@
       fw.innerHTML =
         '<div style="text-align:center;padding:36px 10px">' +
         '<div style="font-size:46px;line-height:1">✅</div>' +
-        '<h2 style="margin:14px 0 6px">신청이 접수되었습니다</h2>' +
-        '<p class="sec-sub" style="margin:0 auto">검토 후 인터뷰 안내를 드리겠습니다. 감사합니다.</p>' +
+        '<h2 style="margin:14px 0 6px">지원이 접수되었습니다</h2>' +
+        '<p class="sec-sub" style="margin:0 auto">곧 비공개 설명회(웨비나) 안내를 드리고, 선발되신 분께 등록 안내를 드리겠습니다. 감사합니다.</p>' +
         '</div>';
       fw.scrollIntoView({behavior:'smooth'});
     }
